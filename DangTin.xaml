@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="DoAnNhom.DangTin"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer>
+        <StackPanel Margin="20" Width="600" HorizontalAlignment="Left">
+            <TextBlock Text="Đăng tin bất động sản" FontSize="22" FontWeight="Bold" Margin="0,0,0,15"/>
+
+            <TextBlock Text="Tiêu đề"/>
+            <TextBox x:Name="txtTieuDe" Margin="0,4,0,10"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="Loại tin"/>
+                    <ComboBox x:Name="cbLoai" Margin="0,4,0,10">
+                        <ComboBoxItem Content="MuaBan"/>
+                        <ComboBoxItem Content="ChoThue"/>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Loại BĐS"/>
+                    <ComboBox x:Name="cbLoaiBDS" Margin="0,4,0,10">
+                        <ComboBoxItem Content="NhaO"/>
+                        <ComboBoxItem Content="CanHo"/>
+                        <ComboBoxItem Content="Dat"/>
+                        <ComboBoxItem Content="BietThu"/>
+                    </ComboBox>
+                </StackPanel>
+            </Grid>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="Giá (VNĐ)"/>
+                    <TextBox x:Name="txtGia" Margin="0,4,0,10"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Diện tích (m²)"/>
+                    <TextBox x:Name="txtDienTich" Margin="0,4,0,10"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Địa chỉ"/>
+            <TextBox x:Name="txtDiaChi" Margin="0,4,0,10"/>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Margin="0,0,10,0">
+                    <TextBlock Text="Quận/Huyện"/>
+                    <TextBox x:Name="txtQuanHuyen" Margin="0,4,0,10"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Text="Thành phố"/>
+                    <TextBox x:Name="txtThanhPho" Margin="0,4,0,10"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Mô tả"/>
+            <TextBox x:Name="txtMoTa" AcceptsReturn="True" Height="100" Margin="0,4,0,10"/>
+
+            <TextBlock Text="Đường dẫn ảnh (cách nhau dấu ;)"/>
+            <TextBox x:Name="txtHinhAnh" Margin="0,4,0,10"/>
+
+            <Button Content="Đăng tin" Width="120" Height="36" HorizontalAlignment="Left" Click="BtnDangTin_Click"/>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

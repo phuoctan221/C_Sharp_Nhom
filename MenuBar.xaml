@@ -1,0 +1,139 @@
+﻿<UserControl x:Class="DoAnNhom.MenuBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <UserControl.Resources>
+
+        <!-- Gold Brush -->
+        <LinearGradientBrush x:Key="GoldBrush" StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="#F5D77A" Offset="0"/>
+            <GradientStop Color="#C9A227" Offset="1"/>
+        </LinearGradientBrush>
+
+        <!-- Menu Button Style -->
+        <Style x:Key="MenuButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="#F5D77A"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="16,8"/>
+            <Setter Property="Margin" Value="6,0"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="bd"
+                                Background="Transparent"
+                                CornerRadius="6"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+
+                            <!-- Hover -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd"
+                                        Property="Background"
+                                        Value="#22F5D77A"/>
+                            </Trigger>
+
+                            <!-- Click -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="bd"
+                                        Property="Background"
+                                        Value="#33F5D77A"/>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+
+    <!-- DARK BACKGROUND -->
+    <Border Padding="14"
+            Background="#111111">
+
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15"
+                              ShadowDepth="2"
+                              Opacity="0.4"/>
+        </Border.Effect>
+
+        <Grid VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Logo -->
+            <StackPanel Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                <TextBlock Text="◆"
+                           FontSize="22"
+                           Foreground="{StaticResource GoldBrush}"
+                           Margin="0,0,8,0"/>
+
+                <TextBlock Text="BẤT ĐỘNG SẢN"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource GoldBrush}"/>
+            </StackPanel>
+
+            <!-- Menu -->
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
+                <Button Content="Trang chủ"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnTrangChu_Click"/>
+
+                <Button Content="Tìm kiếm"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnTimKiem_Click"/>
+
+
+                <Button Content="Yêu thích"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnYeuThich_Click"/>
+            </StackPanel>
+
+            <!-- User -->
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center">
+
+                <TextBlock x:Name="txtUser"
+                           Foreground="#F5D77A"
+                           VerticalAlignment="Center"
+                           Margin="0,0,10,0"/>
+
+                <Button x:Name="btnDangNhap"
+                        Content="Đăng nhập"
+                        Padding="16,8"
+                        Margin="5,0"
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        Background="{StaticResource GoldBrush}"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnDangNhap_Click"/>
+
+                <Button x:Name="btnDangXuat"
+                        Content="Đăng xuất"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnDangXuat_Click"
+                        Visibility="Collapsed"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

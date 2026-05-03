@@ -1,0 +1,183 @@
+﻿<Window x:Class="DoAnNhom.CustomMessengeBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DoAnNhom"
+        mc:Ignorable="d"
+        Title="Thông báo"
+        Width="420"
+        SizeToContent="Height"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
+
+    <Border Background="White"
+            CornerRadius="15"
+            BorderThickness="1"
+            BorderBrush="#EEEEEE"
+            Padding="24">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15"
+                              Direction="0"
+                              RenderingBias="Quality"
+                              ShadowDepth="1"
+                              Opacity="0.2"/>
+        </Border.Effect>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Tiêu đề -->
+            <TextBlock x:Name="txtTitle"
+                       Grid.Row="0"
+                       Text="Thông báo"
+                       FontSize="16"
+                       FontWeight="Bold"
+                       Foreground="#333333"
+                       Margin="0,0,0,10"/>
+
+            <!-- Nội dung -->
+            <TextBlock x:Name="txtMessage"
+                       Grid.Row="1"
+                       Text="Nội dung thông báo ở đây..."
+                       FontSize="14"
+                       Foreground="#666666"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,20"/>
+
+            <!-- Các nút -->
+            <StackPanel Grid.Row="2"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+                <Button x:Name="btnYes"
+                        Content="Có"
+                        Width="80" Height="32"
+                        Visibility="Collapsed"
+                        Background="#28A745"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Margin="0,0,8,0"
+                        Click="BtnYes_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.85"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btnNo"
+                        Content="Không"
+                        Width="80" Height="32"
+                        Visibility="Collapsed"
+                        Background="#6C757D"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Margin="0,0,8,0"
+                        Click="BtnNo_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.85"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btnOK"
+                        Content="Đồng ý"
+                        Width="80" Height="32"
+                        Visibility="Collapsed"
+                        Background="#007BFF"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Margin="0,0,8,0"
+                        Click="BtnOK_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.85"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+                <Button x:Name="btnCancel"
+                        Content="Hủy"
+                        Width="80" Height="32"
+                        Visibility="Collapsed"
+                        Background="#6C757D"
+                        Foreground="White"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="BtnCancel_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+                                    Background="{TemplateBinding Background}"
+                                    CornerRadius="6">
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.85"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</Window>
