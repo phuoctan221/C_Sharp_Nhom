@@ -1,6 +1,7 @@
-﻿using System.Windows;
+﻿using DoAnNhom.Data;
 using DoAnNhom.Views;
-using DoAnNhom.Data;
+using System;
+using System.Windows;
 
 namespace DoAnNhom
 {
@@ -13,15 +14,10 @@ namespace DoAnNhom
         {
             InitializeComponent();
             Instance = this;
-            CurrentUser = null;
-
-            // Cập nhật trạng thái user trên MenuBar
             menuBar.RefreshUser();
-
             NavigateToTrangChu();
         }
 
-        // Xử lý event từ MenuBar
         private void MenuBar_NavigateRequested(object sender, NavigateRequestedEventArgs e)
         {
             Navigate(e.ViewName);
@@ -43,14 +39,19 @@ namespace DoAnNhom
                 case "DangNhap":
                     NavigateToDangNhap();
                     break;
+                case "QuanLyTin":   
+                    NavigateToQuanLyTin();
+                    break;
                 case "YeuThich":
                     NavigateToYeuThich();
                     break;
+
                 default:
                     NavigateToTrangChu();
                     break;
             }
         }
+        public void NavigateToQuanLyTin() => MainContent.Navigate(new QuanLyTin());
 
         public void NavigateToTrangChu() => MainContent.Navigate(new TrangChu());
         public void NavigateToTimKiem() => MainContent.Navigate(new TimKiem());
@@ -64,7 +65,6 @@ namespace DoAnNhom
                 MainContent.Navigate(new ChiTiet(bdsId));
         }
 
-        // Cập nhật MenuBar khi đăng nhập/đăng xuất từ nơi khác
         public void UpdateMenuBar()
         {
             menuBar.RefreshUser();

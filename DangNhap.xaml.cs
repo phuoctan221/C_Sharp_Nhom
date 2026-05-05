@@ -1,23 +1,21 @@
-﻿using System.Windows;
+﻿using System;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace DoAnNhom
 {
-    public partial class DangNhap : Window
+    
+    public partial class DangNhap : UserControl
     {
-        private const string USERNAME = "admin";
-        private const string PASSWORD = "123";
+        private static readonly string connectionString =
+        ConfigurationManager.ConnectionStrings["BatDongSanConn"].ConnectionString;
 
         public DangNhap()
         {
             InitializeComponent();
-
-            this.MouseLeftButtonDown += (s, e) =>
-            {
-                if (e.LeftButton == MouseButtonState.Pressed)
-                    this.DragMove();
-            };
         }
 
         private void Button_DangNhap(object sender, RoutedEventArgs e)
@@ -28,29 +26,59 @@ namespace DoAnNhom
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 CustomMessengeBox.Show("Vui lòng nhập đầy đủ thông tin!",
-                                "Thông báo",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Warning);
+                    "Thông báo",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
-            if (username == USERNAME && password == PASSWORD)
+            try
             {
-                CustomMessengeBox.Show("Đăng nhập thành công!",
-                                "Thông báo",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Information);
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
-                MainWindow main = new MainWindow();
-                main.Show();
-                this.Close();
+                    string query = @"SELECT Id, TenDangNhap, VaiTro 
+                             FROM NguoiDung
+                             WHERE TenDangNhap = @user
+                             AND MatKhau = @pass";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@user", username);
+                    cmd.Parameters.AddWithValue("@pass", password);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+
+                       MainWindow.CurrentUser = new NguoiDung
+                        {
+                            Id = Convert.ToInt32(reader["Id"]),
+                            TenDangNhap = reader["TenDangNhap"].ToString(),
+                            VaiTro = reader["VaiTro"].ToString()
+                        };
+
+                        CustomMessengeBox.Show("Đăng nhập thành công!",
+                            "Thông báo",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Information);
+
+                        MainWindow.Instance.UpdateMenuBar();
+                        MainWindow.Instance.Navigate("TrangChu");
+                    }
+                    else
+                    {
+                        CustomMessengeBox.Show("Sai tài khoản hoặc mật khẩu!",
+                            "Đăng nhập thất bại",
+                            MessageBoxButton.OK,
+                            MessageBoxImage.Error);
+                    }
+                }
             }
-            else
+            catch (Exception ex)
             {
-                CustomMessengeBox.Show("Sai tài khoản hoặc mật khẩu!",
-                                "Đăng nhập thất bại",
-                                MessageBoxButton.OK,
-                                MessageBoxImage.Error);
+                MessageBox.Show("Lỗi kết nối database: " + ex.Message);
             }
         }
 
@@ -78,7 +106,7 @@ namespace DoAnNhom
 
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Window.GetWindow(this)?.Close();
         }
     }
 }

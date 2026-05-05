@@ -9,25 +9,62 @@ namespace DoAnNhom
         public DangTin()
         {
             InitializeComponent();
+
+            if (MainWindow.CurrentUser == null ||
+                MainWindow.CurrentUser.VaiTro != "Admin")
+            {
+                CustomMessengeBox.Show(
+                    "Bạn không có quyền truy cập!",
+                    "Thông báo",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+
+                MainWindow.Instance.Navigate("TrangChu");
+            }
         }
 
         private void BtnDangTin_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtTieuDe.Text) || string.IsNullOrWhiteSpace(txtGia.Text))
+
+            if (string.IsNullOrWhiteSpace(txtTieuDe.Text) ||
+                string.IsNullOrWhiteSpace(txtGia.Text))
             {
-                MessageBox.Show("Vui lòng nhập tiêu đề và giá.");
+                CustomMessengeBox.Show(
+                    "Vui lòng nhập tiêu đề và giá.",
+                    "Thiếu thông tin",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             if (!decimal.TryParse(txtGia.Text, out decimal gia))
             {
-                MessageBox.Show("Giá không hợp lệ.");
+                CustomMessengeBox.Show(
+                    "Giá không hợp lệ.",
+                    "Lỗi dữ liệu",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
             if (!decimal.TryParse(txtDienTich.Text, out decimal dienTich))
             {
-                MessageBox.Show("Diện tích không hợp lệ.");
+                CustomMessengeBox.Show(
+                    "Diện tích không hợp lệ.",
+                    "Lỗi dữ liệu",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
+                return;
+            }
+
+            if (cbLoai.SelectedItem == null ||
+                cbLoaiBDS.SelectedItem == null)
+            {
+                CustomMessengeBox.Show(
+                    "Vui lòng chọn loại tin và loại BĐS.",
+                    "Thiếu thông tin",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
                 return;
             }
 
@@ -50,13 +87,21 @@ namespace DoAnNhom
 
             if (kq)
             {
-                MessageBox.Show("Đăng tin thành công!");
-                var mw = Window.GetWindow(this) as MainWindow;
-                mw?.NavigateToTrangChu();
+                CustomMessengeBox.Show(
+                    "Đăng tin thành công!",
+                    "Thành công",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+
+                MainWindow.Instance.Navigate("TrangChu");
             }
             else
             {
-                MessageBox.Show("Đăng tin thất bại!");
+                CustomMessengeBox.Show(
+                    "Đăng tin thất bại!",
+                    "Lỗi",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
         }
     }

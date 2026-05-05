@@ -12,11 +12,9 @@ namespace DoAnNhom.Data
     public static class DatabaseHelper
     {
 
-        // 🔧 Đổi chuỗi kết nối cho đúng máy bạn
         private static readonly string connectionString =
             ConfigurationManager.ConnectionStrings["BatDongSanConn"].ConnectionString;
 
-        // ===== Người dùng =====
         public static NguoiDung DangNhap(string email, string matKhau)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -65,7 +63,6 @@ namespace DoAnNhom.Data
             }
         }
 
-        // ===== Tin đăng =====
         public static List<TinDang> LayTatCaTin()
         {
             List<TinDang> list = new List<TinDang>();
@@ -284,7 +281,6 @@ namespace DoAnNhom.Data
             return list;
         }
 
-        // ===== Yêu thích =====
         public static bool LuuYeuThich(int nguoiDungId, int tinDangId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -300,18 +296,39 @@ namespace DoAnNhom.Data
             }
         }
 
-        public static bool XoaYeuThich(int nguoiDungId, int tinDangId)
+        public static bool KiemTraYeuThich(int userId, int tinId)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                string sql = "DELETE FROM YeuThich WHERE NguoiDungId=@NguoiDungId AND TinDangId=@TinDangId";
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@NguoiDungId", nguoiDungId);
-                    cmd.Parameters.AddWithValue("@TinDangId", tinDangId);
-                    return cmd.ExecuteNonQuery() > 0;
-                }
+
+                string query = @"SELECT COUNT(*) FROM YeuThich
+                         WHERE NguoiDungId = @userId
+                         AND TinDangId = @tinId";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@tinId", tinId);
+
+                return (int)cmd.ExecuteScalar() > 0;
+            }
+        }
+
+        public static void XoaYeuThich(int userId, int tinId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string query = @"DELETE FROM YeuThich
+                         WHERE NguoiDungId = @userId
+                         AND TinDangId = @tinId";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@userId", userId);
+                cmd.Parameters.AddWithValue("@tinId", tinId);
+
+                cmd.ExecuteNonQuery();
             }
         }
 

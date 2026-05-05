@@ -72,6 +72,9 @@
     <Compile Include="MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyTin.xaml.cs">
+      <DependentUpon>QuanLyTin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TimKiem.xaml.cs">
       <DependentUpon>TimKiem.xaml</DependentUpon>
     </Compile>
@@ -79,7 +82,9 @@
     <Compile Include="TrangChu.xaml.cs">
       <DependentUpon>TrangChu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="YeuThich.cs" />
+    <Compile Include="YeuThich.xaml.cs">
+      <DependentUpon>YeuThich.xaml</DependentUpon>
+    </Compile>
     <Page Include="CardBatDongSan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -126,11 +131,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QuanLyTin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="TimKiem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TrangChu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="YeuThich.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -164,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\backgr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ico.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

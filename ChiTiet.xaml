@@ -78,7 +78,8 @@
                                    FontSize="16"
                                    Margin="0,0,0,20"/>
 
-                        <Button Content="❤️ Lưu vào yêu thích" 
+                        <Button x:Name="btnYeuThich"
+                                Content="❤️ Lưu vào yêu thích" 
                                 Height="52" 
                                 Background="#1E40AF" 
                                 Foreground="White"

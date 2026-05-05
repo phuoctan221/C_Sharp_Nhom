@@ -52,6 +52,11 @@ namespace DoAnNhom
             RaiseNavigate("DangTin");
         }
 
+        private void BtnQuanLyTin_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseNavigate("QuanLyTin");
+        }
+
         private void BtnYeuThich_Click(object sender, RoutedEventArgs e)
         {
             RaiseNavigate("YeuThich");
@@ -64,11 +69,17 @@ namespace DoAnNhom
 
         private void BtnDangXuat_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.CurrentUser != null)
+            var result = CustomMessengeBox.Show(
+            "Bạn có chắc muốn đăng xuất?",
+            "Xác nhận",
+            MessageBoxButton.YesNo,
+            MessageBoxImage.Question);
+
+            if (result == MessageBoxResult.Yes)
             {
                 MainWindow.CurrentUser = null;
                 RefreshUser();
-                RaiseNavigate("TrangChu");
+                MainWindow.Instance.Navigate("TrangChu");
             }
         }
 
@@ -76,15 +87,32 @@ namespace DoAnNhom
         {
             if (MainWindow.CurrentUser != null)
             {
-                txtUser.Text = "Xin chào, " + MainWindow.CurrentUser.HoTen;
+                txtUser.Text = $"Xin chào, {MainWindow.CurrentUser.TenDangNhap}";
                 btnDangNhap.Visibility = Visibility.Collapsed;
                 btnDangXuat.Visibility = Visibility.Visible;
+
+                if (MainWindow.CurrentUser.VaiTro == "Admin")
+                {
+                    btnDangTin.Visibility = Visibility.Visible;
+                    btnQuanLyTin.Visibility = Visibility.Visible;
+                    btnYeuThich.Visibility = Visibility.Collapsed;
+                }
+                else // User
+                {
+                    btnDangTin.Visibility = Visibility.Collapsed;
+                    btnQuanLyTin.Visibility = Visibility.Collapsed;
+                    btnYeuThich.Visibility = Visibility.Visible;
+                }
             }
             else
             {
                 txtUser.Text = "";
                 btnDangNhap.Visibility = Visibility.Visible;
                 btnDangXuat.Visibility = Visibility.Collapsed;
+
+                btnDangTin.Visibility = Visibility.Collapsed;
+                btnQuanLyTin.Visibility = Visibility.Collapsed;
+                btnYeuThich.Visibility = Visibility.Collapsed;
             }
         }
     }

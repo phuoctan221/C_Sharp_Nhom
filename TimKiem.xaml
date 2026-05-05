@@ -44,7 +44,7 @@
 
         <Style x:Key="LuxCombo" TargetType="ComboBox">
             <Setter Property="Background" Value="#252525"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="BorderBrush" Value="#3A3A3A"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="10,0"/>
@@ -130,7 +130,9 @@
                     <TextBox x:Name="txtTuKhoa"
                              Grid.Column="0"
                              Style="{StaticResource LuxInput}"
-                             Margin="0,0,15,0"/>
+                             Margin="0,0,15,0"
+                             
+                             />
 
                     <Button Grid.Column="1"
                             Style="{StaticResource LuxSearchBtn}"
@@ -246,7 +248,7 @@
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Hidden"
                       HorizontalScrollBarVisibility="Disabled"
-                      Background="#1A1A1A">
+                      Background="White">
 
             <StackPanel Margin="40,25,40,40">
 

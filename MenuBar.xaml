@@ -87,7 +87,6 @@
                            Foreground="{StaticResource GoldBrush}"/>
             </StackPanel>
 
-            <!-- Menu -->
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"
                         HorizontalAlignment="Center"
@@ -102,12 +101,23 @@
                         Click="BtnTimKiem_Click"/>
 
 
-                <Button Content="Yêu thích"
+                <Button x:Name="btnYeuThich" Content="Yêu thích"
                         Style="{StaticResource MenuButtonStyle}"
-                        Click="BtnYeuThich_Click"/>
+                        Click="BtnYeuThich_Click"
+                        Visibility="Collapsed"/>
+
+                <Button x:Name="btnDangTin"
+                Content="Đăng tin"
+                Style="{StaticResource MenuButtonStyle}"
+                Click="BtnDangTin_Click"
+                Visibility="Collapsed"/>
+
+                <Button x:Name="btnQuanLyTin" Content="Quản lý tin"
+                Style="{StaticResource MenuButtonStyle}"
+                Click="BtnQuanLyTin_Click"
+                Visibility="Collapsed"/>    
             </StackPanel>
 
-            <!-- User -->
             <StackPanel Grid.Column="2"
                         Orientation="Horizontal"
                         VerticalAlignment="Center">

@@ -5,7 +5,8 @@
         Title="BẤT ĐỘNG SẢN LUXURY" 
         Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
-        Background="#F8F9FA">
+        Background="#F8F9FA"
+        Icon="/images/ico.png">
 
     <Grid>
         <Grid.RowDefinitions>
