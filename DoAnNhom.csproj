@@ -62,6 +62,12 @@
     <Compile Include="ChiTiet.xaml.cs">
       <DependentUpon>ChiTiet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Contact.xaml.cs">
+      <DependentUpon>Contact.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DangKy.xaml.cs">
+      <DependentUpon>DangKy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DangTin.xaml.cs">
       <DependentUpon>DangTin.xaml</DependentUpon>
     </Compile>
@@ -72,8 +78,14 @@
     <Compile Include="MenuBar.xaml.cs">
       <DependentUpon>MenuBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="QuanLyTaiKhoan.xaml.cs">
+      <DependentUpon>QuanLyTaiKhoan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="QuanLyTin.xaml.cs">
       <DependentUpon>QuanLyTin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SuaTaiKhoan.xaml.cs">
+      <DependentUpon>SuaTaiKhoan.xaml</DependentUpon>
     </Compile>
     <Compile Include="TimKiem.xaml.cs">
       <DependentUpon>TimKiem.xaml</DependentUpon>
@@ -93,7 +105,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Contact.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomMessengeBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DangKy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -131,7 +151,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="QuanLyTaiKhoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="QuanLyTin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SuaTaiKhoan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,6 +208,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\ico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="README.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

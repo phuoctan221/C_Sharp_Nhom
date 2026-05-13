@@ -1,5 +1,6 @@
 ﻿using DoAnNhom.Data;
 using System.Windows.Controls;
+using System.Diagnostics;
 
 namespace DoAnNhom.Views
 {
@@ -11,6 +12,22 @@ namespace DoAnNhom.Views
             LoadData();
         }
 
+        private void OpenInstagram(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://www.instagram.com",
+                UseShellExecute = true
+            });
+        }
+        private void OpenFacebook(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://www.facebook.com/phuoctannn",
+                UseShellExecute = true
+            });
+        }
         private void LoadData()
         {
             var danhSach = DatabaseHelper.LayTatCaTin();

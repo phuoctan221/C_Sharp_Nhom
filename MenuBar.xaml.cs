@@ -5,7 +5,6 @@ namespace DoAnNhom
 {
     public partial class MenuBar : UserControl
     {
-        // Event để MainWindow biết cần chuyển trang
         public static readonly RoutedEvent NavigateRequestedEvent =
             EventManager.RegisterRoutedEvent(
                 "NavigateRequested",
@@ -24,19 +23,12 @@ namespace DoAnNhom
             InitializeComponent();
         }
 
-        // Lấy MainWindow
-        private MainWindow Main
-        {
-            get { return Application.Current.MainWindow as MainWindow; }
-        }
-
-        // Gửi event lên MainWindow
         private void RaiseNavigate(string viewName)
         {
             RaiseEvent(new NavigateRequestedEventArgs(NavigateRequestedEvent, viewName));
         }
 
-        // Các nút click
+
         private void BtnTrangChu_Click(object sender, RoutedEventArgs e)
         {
             RaiseNavigate("TrangChu");
@@ -62,6 +54,11 @@ namespace DoAnNhom
             RaiseNavigate("YeuThich");
         }
 
+        private void BtnQuanLyTaiKhoan_Click(object sender, RoutedEventArgs e)
+        {
+            RaiseNavigate("QuanLyTaiKhoan");
+        }
+
         private void BtnDangNhap_Click(object sender, RoutedEventArgs e)
         {
             RaiseNavigate("DangNhap");
@@ -70,24 +67,25 @@ namespace DoAnNhom
         private void BtnDangXuat_Click(object sender, RoutedEventArgs e)
         {
             var result = CustomMessengeBox.Show(
-            "Bạn có chắc muốn đăng xuất?",
-            "Xác nhận",
-            MessageBoxButton.YesNo,
-            MessageBoxImage.Question);
+                "Bạn có chắc muốn đăng xuất?",
+                "Xác nhận",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
 
             if (result == MessageBoxResult.Yes)
             {
                 MainWindow.CurrentUser = null;
                 RefreshUser();
-                MainWindow.Instance.Navigate("TrangChu");
+                RaiseNavigate("TrangChu");
             }
         }
+
 
         public void RefreshUser()
         {
             if (MainWindow.CurrentUser != null)
             {
-                txtUser.Text = $"Xin chào, {MainWindow.CurrentUser.TenDangNhap}";
+                txtUser.Text = $"Xin chào, {MainWindow.CurrentUser.HoTen}";
                 btnDangNhap.Visibility = Visibility.Collapsed;
                 btnDangXuat.Visibility = Visibility.Visible;
 
@@ -95,12 +93,14 @@ namespace DoAnNhom
                 {
                     btnDangTin.Visibility = Visibility.Visible;
                     btnQuanLyTin.Visibility = Visibility.Visible;
+                    btnQuanLyTaiKhoan.Visibility = Visibility.Visible;
                     btnYeuThich.Visibility = Visibility.Collapsed;
                 }
-                else // User
+                else 
                 {
                     btnDangTin.Visibility = Visibility.Collapsed;
                     btnQuanLyTin.Visibility = Visibility.Collapsed;
+                    btnQuanLyTaiKhoan.Visibility = Visibility.Collapsed;
                     btnYeuThich.Visibility = Visibility.Visible;
                 }
             }
@@ -112,10 +112,12 @@ namespace DoAnNhom
 
                 btnDangTin.Visibility = Visibility.Collapsed;
                 btnQuanLyTin.Visibility = Visibility.Collapsed;
+                btnQuanLyTaiKhoan.Visibility = Visibility.Collapsed;
                 btnYeuThich.Visibility = Visibility.Collapsed;
             }
         }
     }
+
 
     public delegate void NavigateRequestedEventHandler(
         object sender, NavigateRequestedEventArgs e);

@@ -1,6 +1,5 @@
 ﻿using DoAnNhom.Data;
 using DoAnNhom.Views;
-using System;
 using System.Windows;
 
 namespace DoAnNhom
@@ -15,6 +14,7 @@ namespace DoAnNhom
             InitializeComponent();
             Instance = this;
             menuBar.RefreshUser();
+
             NavigateToTrangChu();
         }
 
@@ -30,18 +30,31 @@ namespace DoAnNhom
                 case "TrangChu":
                     NavigateToTrangChu();
                     break;
+
                 case "TimKiem":
                     NavigateToTimKiem();
                     break;
+
                 case "DangTin":
                     NavigateToDangTin();
                     break;
+
                 case "DangNhap":
                     NavigateToDangNhap();
                     break;
-                case "QuanLyTin":   
+
+                case "DangKy":                 
+                    NavigateToDangKy();
+                    break;
+
+                case "QuanLyTin":
                     NavigateToQuanLyTin();
                     break;
+
+                case "QuanLyTaiKhoan":
+                    NavigateToQuanLyTaiKhoan();
+                    break;
+
                 case "YeuThich":
                     NavigateToYeuThich();
                     break;
@@ -51,13 +64,47 @@ namespace DoAnNhom
                     break;
             }
         }
-        public void NavigateToQuanLyTin() => MainContent.Navigate(new QuanLyTin());
 
-        public void NavigateToTrangChu() => MainContent.Navigate(new TrangChu());
-        public void NavigateToTimKiem() => MainContent.Navigate(new TimKiem());
-        public void NavigateToDangTin() => MainContent.Navigate(new DangTin());
-        public void NavigateToDangNhap() => MainContent.Navigate(new DangNhap());
-        public void NavigateToYeuThich() => MainContent.Navigate(new YeuThich());
+
+        public void NavigateToTrangChu()
+        {
+            MainContent.Navigate(new TrangChu());
+        }
+
+        public void NavigateToTimKiem()
+        {
+            MainContent.Navigate(new TimKiem());
+        }
+
+        public void NavigateToDangTin()
+        {
+            MainContent.Navigate(new DangTin());
+        }
+
+        public void NavigateToDangNhap()
+        {
+            MainContent.Navigate(new DangNhap());
+        }
+
+        public void NavigateToDangKy()        
+        {
+            MainContent.Navigate(new DangKy());
+        }
+
+        public void NavigateToQuanLyTin()
+        {
+            MainContent.Navigate(new QuanLyTin());
+        }
+
+        public void NavigateToQuanLyTaiKhoan()
+        {
+            MainContent.Navigate(new QuanLyTaiKhoan());
+        }
+
+        public void NavigateToYeuThich()
+        {
+            MainContent.Navigate(new YeuThich());
+        }
 
         public void NavigateToChiTiet(int bdsId)
         {

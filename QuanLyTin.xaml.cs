@@ -74,7 +74,7 @@ namespace DoAnNhom
             if ((sender as Button)?.DataContext is DataRowView row)
             {
                 int id = Convert.ToInt32(row["Id"]);
-                MainWindow.Instance.NavigateToChiTiet(id);
+                MainWindow.Instance.MainContent.Content = new DangTin(id);
             }
         }
 

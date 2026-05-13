@@ -4,13 +4,11 @@
 
     <UserControl.Resources>
 
-        <!-- Gold Brush -->
         <LinearGradientBrush x:Key="GoldBrush" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#F5D77A" Offset="0"/>
             <GradientStop Color="#C9A227" Offset="1"/>
         </LinearGradientBrush>
 
-        <!-- Menu Button Style -->
         <Style x:Key="MenuButtonStyle" TargetType="Button">
             <Setter Property="Foreground" Value="#F5D77A"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -20,50 +18,12 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border x:Name="bd"
-                                Background="Transparent"
-                                CornerRadius="6"
-                                Padding="{TemplateBinding Padding}">
-                            <ContentPresenter HorizontalAlignment="Center"
-                                              VerticalAlignment="Center"/>
-                        </Border>
-
-                        <ControlTemplate.Triggers>
-
-                            <!-- Hover -->
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bd"
-                                        Property="Background"
-                                        Value="#22F5D77A"/>
-                            </Trigger>
-
-                            <!-- Click -->
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="bd"
-                                        Property="Background"
-                                        Value="#33F5D77A"/>
-                            </Trigger>
-
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
 
     </UserControl.Resources>
 
-    <!-- DARK BACKGROUND -->
     <Border Padding="14"
             Background="#111111">
-
-        <Border.Effect>
-            <DropShadowEffect BlurRadius="15"
-                              ShadowDepth="2"
-                              Opacity="0.4"/>
-        </Border.Effect>
 
         <Grid VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -72,10 +32,7 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <!-- Logo -->
-            <StackPanel Orientation="Horizontal"
-                        VerticalAlignment="Center">
-
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="◆"
                            FontSize="22"
                            Foreground="{StaticResource GoldBrush}"
@@ -89,8 +46,7 @@
 
             <StackPanel Grid.Column="1"
                         Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        HorizontalAlignment="Center">
 
                 <Button Content="Trang chủ"
                         Style="{StaticResource MenuButtonStyle}"
@@ -100,27 +56,33 @@
                         Style="{StaticResource MenuButtonStyle}"
                         Click="BtnTimKiem_Click"/>
 
-
-                <Button x:Name="btnYeuThich" Content="Yêu thích"
+                <Button x:Name="btnYeuThich"
+                        Content="Yêu thích"
                         Style="{StaticResource MenuButtonStyle}"
                         Click="BtnYeuThich_Click"
                         Visibility="Collapsed"/>
 
                 <Button x:Name="btnDangTin"
-                Content="Đăng tin"
-                Style="{StaticResource MenuButtonStyle}"
-                Click="BtnDangTin_Click"
-                Visibility="Collapsed"/>
+                        Content="Đăng tin"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnDangTin_Click"
+                        Visibility="Collapsed"/>
 
-                <Button x:Name="btnQuanLyTin" Content="Quản lý tin"
-                Style="{StaticResource MenuButtonStyle}"
-                Click="BtnQuanLyTin_Click"
-                Visibility="Collapsed"/>    
+                <Button x:Name="btnQuanLyTin"
+                        Content="Quản lý tin"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnQuanLyTin_Click"
+                        Visibility="Collapsed"/>
+                
+                <Button x:Name="btnQuanLyTaiKhoan"
+                        Content="Quản lý tài khoản"
+                        Style="{StaticResource MenuButtonStyle}"
+                        Click="BtnQuanLyTaiKhoan_Click"
+                        Visibility="Collapsed"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2"
-                        Orientation="Horizontal"
-                        VerticalAlignment="Center">
+                        Orientation="Horizontal">
 
                 <TextBlock x:Name="txtUser"
                            Foreground="#F5D77A"

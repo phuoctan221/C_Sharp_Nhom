@@ -5,7 +5,6 @@
       Background="#1A1A1A">
 
     <Page.Resources>
-        <!-- Gold Brush -->
         <LinearGradientBrush x:Key="GoldBrush" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#F5D77A" Offset="0"/>
             <GradientStop Color="#C9A227" Offset="1"/>
@@ -112,7 +111,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- ===== BỘ LỌC TÌM KIẾM (Full width) ===== -->
         <Border Grid.Row="0"
                 Background="#141414"
                 BorderBrush="#2A2A2A"
@@ -120,7 +118,6 @@
                 Padding="40,22,40,20">
 
             <StackPanel>
-                <!-- Hàng 1: Từ khóa + Nút tìm kiếm -->
                 <Grid Margin="0,0,0,18">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -139,7 +136,6 @@
                             Click="BtnTimKiem_Click"/>
                 </Grid>
 
-                <!-- Hàng 2: Các bộ lọc (tự động chia đều) -->
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -152,7 +148,6 @@
                         <ColumnDefinition Width="Auto"/>
                     </Grid.ColumnDefinitions>
 
-                    <!-- Loại tin -->
                     <StackPanel Grid.Column="0" Margin="0,0,12,0">
                         <TextBlock Text="Loại tin" Style="{StaticResource LuxLabel}"/>
                         <ComboBox x:Name="cbLoai" Style="{StaticResource LuxCombo}">
@@ -162,7 +157,6 @@
                         </ComboBox>
                     </StackPanel>
 
-                    <!-- Loại BĐS -->
                     <StackPanel Grid.Column="1" Margin="0,0,12,0">
                         <TextBlock Text="Loại BĐS" Style="{StaticResource LuxLabel}"/>
                         <ComboBox x:Name="cbLoaiBDS" Style="{StaticResource LuxCombo}">
@@ -174,37 +168,31 @@
                         </ComboBox>
                     </StackPanel>
 
-                    <!-- Giá từ -->
                     <StackPanel Grid.Column="2" Margin="0,0,12,0">
                         <TextBlock Text="Giá từ" Style="{StaticResource LuxLabel}"/>
                         <TextBox x:Name="txtGiaTu" Style="{StaticResource LuxInput}"/>
                     </StackPanel>
 
-                    <!-- Giá đến -->
                     <StackPanel Grid.Column="3" Margin="0,0,12,0">
                         <TextBlock Text="Giá đến" Style="{StaticResource LuxLabel}"/>
                         <TextBox x:Name="txtGiaDen" Style="{StaticResource LuxInput}"/>
                     </StackPanel>
 
-                    <!-- Diện tích từ -->
                     <StackPanel Grid.Column="4" Margin="0,0,12,0">
                         <TextBlock Text="Diện tích từ" Style="{StaticResource LuxLabel}"/>
                         <TextBox x:Name="txtDienTichTu" Style="{StaticResource LuxInput}"/>
                     </StackPanel>
 
-                    <!-- Diện tích đến -->
                     <StackPanel Grid.Column="5" Margin="0,0,12,0">
                         <TextBlock Text="Diện tích đến" Style="{StaticResource LuxLabel}"/>
                         <TextBox x:Name="txtDienTichDen" Style="{StaticResource LuxInput}"/>
                     </StackPanel>
 
-                    <!-- Thành phố -->
                     <StackPanel Grid.Column="6" Margin="0,0,12,0">
                         <TextBlock Text="Thành phố" Style="{StaticResource LuxLabel}"/>
                         <TextBox x:Name="txtThanhPho" Style="{StaticResource LuxInput}"/>
                     </StackPanel>
 
-                    <!-- Nút Xóa -->
                     <StackPanel Grid.Column="7" VerticalAlignment="Bottom">
                         <TextBlock Text=" " Style="{StaticResource LuxLabel}"/>
                         <Button Content="✕ Xóa"
@@ -244,7 +232,6 @@
             </StackPanel>
         </Border>
 
-        <!-- ===== KẾT QUẢ (Cân đều khi phóng to) ===== -->
         <ScrollViewer Grid.Row="1"
                       VerticalScrollBarVisibility="Hidden"
                       HorizontalScrollBarVisibility="Disabled"
@@ -252,18 +239,15 @@
 
             <StackPanel Margin="40,25,40,40">
 
-                <!-- Số kết quả -->
                 <TextBlock x:Name="txtKetQua"
                            FontSize="14"
                            Foreground="#AAAAAA"
                            Margin="0,0,0,20"/>
 
-                <!-- Danh sách card - Căn giữa + dùng hết chiều rộng -->
                 <WrapPanel x:Name="wrapList"
                            HorizontalAlignment="Center"
                            Margin="0"/>
 
-                <!-- Thông báo không có kết quả -->
                 <StackPanel x:Name="pnlThongBao"
                             HorizontalAlignment="Center"
                             Margin="0,120,0,0"

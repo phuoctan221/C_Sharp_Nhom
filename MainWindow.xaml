@@ -24,6 +24,5 @@
                NavigationUIVisibility="Hidden"
                Background="#F8F9FA"/>
 
-        <local:Footer Grid.Row="2"/>
     </Grid>
 </Window>

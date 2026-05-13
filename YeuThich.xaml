@@ -3,18 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       Background="#111111">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Hidden">
 
         <StackPanel Margin="30">
 
-            <!-- Tiêu đề -->
             <TextBlock Text="DANH SÁCH YÊU THÍCH"
                        FontSize="28"
                        FontWeight="Bold"
                        Foreground="#D4AF37"
                        Margin="0,0,0,30"/>
 
-            <!-- Cards -->
             <WrapPanel x:Name="wrapYeuThich"
                        HorizontalAlignment="Left"
                        ItemWidth="320"

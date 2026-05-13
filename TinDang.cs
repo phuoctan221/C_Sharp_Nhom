@@ -10,8 +10,8 @@ namespace DoAnNhom
     {
         public int Id { get; set; }
         public string TieuDe { get; set; }
-        public string Loai { get; set; }        // MuaBan / ChoThue
-        public string LoaiBDS { get; set; }     // NhaO / CanHo / Dat / BietThu
+        public string Loai { get; set; }        
+        public string LoaiBDS { get; set; }     
         public decimal Gia { get; set; }
         public decimal DienTich { get; set; }
         public string DiaChi { get; set; }

@@ -1,8 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 using DoAnNhom.Data;
 
 namespace DoAnNhom.Views
@@ -12,10 +17,14 @@ namespace DoAnNhom.Views
         private TinDang _tin;
         private int _currentId = 0;
 
+        private List<string> imageList = new List<string>();
+        private int currentIndex = 0;
+        private DispatcherTimer timer;
+
         public ChiTiet()
         {
             InitializeComponent();
-            this.Loaded += ChiTiet_Loaded;
+            Loaded += ChiTiet_Loaded;
         }
 
         public ChiTiet(int id) : this()
@@ -31,36 +40,10 @@ namespace DoAnNhom.Views
 
         private void LoadChiTiet(int id)
         {
-            try
-            {
-                _tin = DatabaseHelper.LayTinTheoId(id);
+            _tin = DatabaseHelper.LayTinTheoId(id);
+            if (_tin == null) return;
 
-                if (_tin == null)
-                {
-                    CustomMessengeBox.Show(
-                        $"Không tìm thấy tin đăng có ID = {id}",
-                        "Thông báo",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Warning);
-                    return;
-                }
-
-                BindData();
-            }
-            catch (Exception ex)
-            {
-                CustomMessengeBox.Show(
-                    $"Lỗi tải dữ liệu: {ex.Message}",
-                    "Lỗi",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-        }
-
-        private void BindData()
-        {
             txtTieuDe.Text = _tin.TieuDe;
-
             txtGia.Text = _tin.Loai == "ChoThue"
                 ? $"{_tin.Gia:N0} đ/tháng"
                 : $"{_tin.Gia:N0} đ";
@@ -68,57 +51,101 @@ namespace DoAnNhom.Views
             txtDienTich.Text = $"• {_tin.DienTich} m²";
             txtLoai.Text = $"{_tin.Loai} - {_tin.LoaiBDS}";
             txtDiaChi.Text = $"{_tin.DiaChi}, {_tin.QuanHuyen}, {_tin.ThanhPho}";
-
             txtMoTa.Text = string.IsNullOrEmpty(_tin.MoTa)
-                ? "Chưa có mô tả chi tiết cho bất động sản này."
+                ? "Chưa có mô tả."
                 : _tin.MoTa;
 
-            if (!string.IsNullOrEmpty(_tin.HinhAnh))
-            {
-                try
-                {
-                    var firstImage = _tin.HinhAnh.Split(
-                        new[] { ';' },
-                        StringSplitOptions.RemoveEmptyEntries)[0];
+            txtLoaiBadge.Text = _tin.Loai == "ChoThue"
+                ? "CHO THUÊ"
+                : "MUA BÁN";
 
-                    imgHinh.Source = new BitmapImage(
-                        new Uri(firstImage, UriKind.RelativeOrAbsolute));
-                }
-                catch { }
-            }
-            CapNhatTrangThaiYeuThich();
+            LoadImages();
         }
 
-        private void CapNhatTrangThaiYeuThich()
+        private async void LoadImages()
         {
-            if (MainWindow.CurrentUser == null || _tin == null)
+            imageList.Clear();
+            currentIndex = 0;
+
+            if (!string.IsNullOrWhiteSpace(_tin.HinhAnh))
             {
-                btnYeuThich.Foreground = Brushes.White;
-                return;
+                var arr = _tin.HinhAnh
+                    .Replace("\r", "")
+                    .Split(new[] { ';', '\n' },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+                foreach (var item in arr)
+                {
+                    string url = item.Trim();
+                    if (url.StartsWith("http"))
+                        imageList.Add(url);
+                }
             }
 
-            bool daThich = DatabaseHelper.KiemTraYeuThich(
-                MainWindow.CurrentUser.Id,
-                _tin.Id);
+            if (imageList.Count > 0)
+            {
+                await ShowImage(imageList[0]);
 
-            btnYeuThich.Foreground = daThich
-                ? Brushes.Red
-                : Brushes.White;
+                if (imageList.Count > 1)
+                    StartAutoSlide();
+            }
+            else
+            {
+                imgHinh.Source = null;
+            }
+        }
+
+        private async Task ShowImage(string url)
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    var bytes = await client.GetByteArrayAsync(url);
+
+                    BitmapImage bitmap = new BitmapImage();
+                    using (MemoryStream ms = new MemoryStream(bytes))
+                    {
+                        bitmap.BeginInit();
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.StreamSource = ms;
+                        bitmap.EndInit();
+                        bitmap.Freeze();
+                    }
+
+                    imgHinh.Source = bitmap;
+                }
+            }
+            catch
+            {
+                imgHinh.Source = null;
+            }
+        }
+
+        private void StartAutoSlide()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(3);
+            timer.Tick += async (s, e) =>
+            {
+                currentIndex++;
+                if (currentIndex >= imageList.Count)
+                    currentIndex = 0;
+
+                await ShowImage(imageList[currentIndex]);
+            };
+            timer.Start();
+        }
+
+        private void BtnQuayLai_Click(object sender, RoutedEventArgs e)
+        {
+            timer?.Stop();
+            MainWindow.Instance?.NavigateToTrangChu();
         }
 
         private void BtnYeuThich_Click(object sender, RoutedEventArgs e)
         {
-            if (MainWindow.CurrentUser == null)
-            {
-                CustomMessengeBox.Show(
-                    "Vui lòng đăng nhập để lưu tin yêu thích!",
-                    "Thông báo",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
-                return;
-            }
-
-            if (_tin == null) return;
+            if (MainWindow.CurrentUser == null) return;
 
             bool daThich = DatabaseHelper.KiemTraYeuThich(
                 MainWindow.CurrentUser.Id,
@@ -129,34 +156,15 @@ namespace DoAnNhom.Views
                 DatabaseHelper.XoaYeuThich(
                     MainWindow.CurrentUser.Id,
                     _tin.Id);
-
                 btnYeuThich.Foreground = Brushes.White;
-
-                CustomMessengeBox.Show(
-                    "Đã bỏ khỏi yêu thích!",
-                    "Thông báo",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
             }
             else
             {
                 DatabaseHelper.LuuYeuThich(
                     MainWindow.CurrentUser.Id,
                     _tin.Id);
-
                 btnYeuThich.Foreground = Brushes.Red;
-
-                CustomMessengeBox.Show(
-                    "Đã lưu vào yêu thích!",
-                    "Thông báo",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Information);
             }
-        }
-
-        private void BtnQuayLai_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow.Instance?.NavigateToTrangChu();
         }
     }
 }

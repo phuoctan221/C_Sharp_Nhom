@@ -82,6 +82,10 @@ namespace DoAnNhom
             }
         }
 
+        private void TxtDangKy_Click(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow.Instance.Navigate("DangKy");
+        }
         private void txtUsername_GotFocus(object sender, RoutedEventArgs e)
         {
             lblUsernamePlaceholder.Visibility = Visibility.Collapsed;

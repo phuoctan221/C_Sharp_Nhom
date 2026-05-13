@@ -1,0 +1,60 @@
+﻿<Page x:Class="DoAnNhom.Contact"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DoAnNhom"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Contact">
+
+    <Grid Margin="50">
+
+        <Border Background="White"
+                Padding="40"
+                CornerRadius="15"
+                BorderBrush="#E5E7EB"
+                BorderThickness="1">
+
+            <StackPanel>
+
+                <TextBlock Text="LIÊN HỆ VỚI CHÚNG TÔI"
+                           FontSize="26"
+                           FontWeight="Bold"
+                           Foreground="#1E40AF"
+                           Margin="0,0,0,25"/>
+
+                <TextBlock Text="Họ và tên"/>
+                <TextBox x:Name="txtHoTen"
+                         Height="35"
+                         Margin="0,5,0,15"/>
+
+                <TextBlock Text="Email"/>
+                <TextBox x:Name="txtEmail"
+                         Height="35"
+                         Margin="0,5,0,15"/>
+
+                <TextBlock Text="Số điện thoại"/>
+                <TextBox x:Name="txtSoDienThoai"
+                         Height="35"
+                         Margin="0,5,0,15"/>
+
+                <TextBlock Text="Nội dung"/>
+                <TextBox x:Name="txtNoiDung"
+                         AcceptsReturn="True"
+                         Height="120"
+                         TextWrapping="Wrap"
+                         Margin="0,5,0,25"/>
+
+                <Button Content="GỬI LIÊN HỆ"
+                        Height="45"
+                        Background="#1E40AF"
+                        Foreground="White"
+                        FontWeight="Bold"
+                        Click="BtnGui_Click"/>
+
+            </StackPanel>
+
+        </Border>
+    </Grid>
+</Page>

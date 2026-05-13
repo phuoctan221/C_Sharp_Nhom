@@ -1,0 +1,202 @@
+﻿<UserControl x:Class="DoAnNhom.Views.DangKy"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/images/backgr.png"
+                        Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Border Width="400"
+                Padding="35"
+                CornerRadius="20"
+                BorderBrush="#55D4AF37"
+                BorderThickness="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.55"/>
+            </Border.Background>
+
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="35"
+                                  ShadowDepth="0"
+                                  Opacity="0.7"
+                                  Color="Black"/>
+            </Border.Effect>
+
+            <StackPanel>
+
+                <TextBlock HorizontalAlignment="Center"
+                           FontSize="26"
+                           FontFamily="Cambria"
+                           FontWeight="Bold"
+                           Margin="0,0,0,25">
+                    <Run Text="CREATE " Foreground="White"/>
+                    <Run Text="ACCOUNT" Foreground="#D4AF37"/>
+                </TextBlock>
+
+                <Border x:Name="bdUsername"
+                        CornerRadius="8"
+                        Background="Black"
+                        BorderBrush="#55D4AF37"
+                        BorderThickness="1"
+                        Height="45"
+                        Margin="0,0,0,15">
+
+                    <Grid>
+                        <TextBox x:Name="txtTenDangNhap"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="White"
+                                 CaretBrush="White"
+                                 FontSize="14"
+                                 VerticalContentAlignment="Center"
+                                 Padding="15,0"
+                                 GotFocus="txtTenDangNhap_GotFocus"
+                                 LostFocus="txtTenDangNhap_LostFocus"/>
+
+                        <TextBlock x:Name="lblTenDangNhap"
+                                   Text="Tên đăng nhập"
+                                   Foreground="#88FFFFFF"
+                                   VerticalAlignment="Center"
+                                   Margin="15,0"
+                                   FontSize="14"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="bdHoTen"
+                        CornerRadius="8"
+                        Background="Black"
+                        BorderBrush="#55D4AF37"
+                        BorderThickness="1"
+                        Height="45"
+                        Margin="0,0,0,15">
+
+                    <Grid>
+                        <TextBox x:Name="txtHoTen"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="White"
+                                 CaretBrush="White"
+                                 FontSize="14"
+                                 VerticalContentAlignment="Center"
+                                 Padding="15,0"
+                                 GotFocus="txtHoTen_GotFocus"
+                                 LostFocus="txtHoTen_LostFocus"/>
+
+                        <TextBlock x:Name="lblHoTen"
+                                   Text="Họ tên"
+                                   Foreground="#88FFFFFF"
+                                   VerticalAlignment="Center"
+                                   Margin="15,0"
+                                   FontSize="14"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="bdEmail"
+                        CornerRadius="8"
+                        Background="Black"
+                        BorderBrush="#55D4AF37"
+                        BorderThickness="1"
+                        Height="45"
+                        Margin="0,0,0,15">
+
+                    <Grid>
+                        <TextBox x:Name="txtEmail"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="White"
+                                 CaretBrush="White"
+                                 FontSize="14"
+                                 VerticalContentAlignment="Center"
+                                 Padding="15,0"
+                                 GotFocus="txtEmail_GotFocus"
+                                 LostFocus="txtEmail_LostFocus"/>
+
+                        <TextBlock x:Name="lblEmail"
+                                   Text="Email"
+                                   Foreground="#88FFFFFF"
+                                   VerticalAlignment="Center"
+                                   Margin="15,0"
+                                   FontSize="14"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+                </Border>
+
+                <Border x:Name="bdPassword"
+                        CornerRadius="8"
+                        Background="Black"
+                        BorderBrush="#55D4AF37"
+                        BorderThickness="1"
+                        Height="45"
+                        Margin="0,0,0,25">
+
+                    <Grid>
+
+                        <PasswordBox x:Name="txtMatKhau"
+                                     Background="Transparent"
+                                     Foreground="White"
+                                     BorderThickness="0"
+                                     VerticalContentAlignment="Center"
+                                     Padding="15,0"
+                                     FontSize="14"
+                                     CaretBrush="White"
+                                     GotFocus="txtMatKhau_GotFocus"
+                                     LostFocus="txtMatKhau_LostFocus"/>
+
+                        <TextBlock x:Name="lblMatKhau"
+                                   Text="Mật khẩu"
+                                   Foreground="#88FFFFFF"
+                                   VerticalAlignment="Center"
+                                   Margin="15,0"
+                                   FontSize="14"
+                                   IsHitTestVisible="False"/>
+                    </Grid>
+                </Border>
+
+                <Button Height="45"
+                        FontSize="15"
+                        FontWeight="Bold"
+                        Foreground="Black"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Content="ĐĂNG KÝ"
+                        Click="BtnDangKy_Click">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                        <GradientStop Color="#F6E27A" Offset="0"/>
+                                        <GradientStop Color="#D4AF37" Offset="0.5"/>
+                                        <GradientStop Color="#A67C00" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="Button">
+                                        <Border CornerRadius="10"
+                                                Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center"
+                                                              VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+
+                </Button>
+
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>

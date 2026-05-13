@@ -34,7 +34,6 @@ namespace DoAnNhom
                     new System.Uri(first, System.UriKind.RelativeOrAbsolute));
             }
 
-            // ✅ Kiểm tra đã yêu thích chưa để đổi màu tim
             KiemTraTrangThaiYeuThich();
         }
 

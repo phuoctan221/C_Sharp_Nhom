@@ -8,13 +8,11 @@
              Width="320" Height="380">
 
     <UserControl.Resources>
-        <!-- Gold Brush -->
         <LinearGradientBrush x:Key="GoldBrush" StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="#F5D77A" Offset="0"/>
             <GradientStop Color="#C9A227" Offset="1"/>
         </LinearGradientBrush>
 
-        <!-- Button Style -->
         <Style x:Key="LuxBtn" TargetType="Button">
             <Setter Property="Background" Value="#252525"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -55,7 +53,6 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <!-- Ảnh BĐS -->
             <Border Grid.Row="0" CornerRadius="12,12,0,0" ClipToBounds="True">
                 <Image x:Name="imgHinh" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality"/>
                 <Border.Background>
@@ -63,7 +60,6 @@
                 </Border.Background>
             </Border>
 
-            <!-- Nội dung -->
             <Grid Grid.Row="1" Margin="18,15,18,12">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
@@ -72,7 +68,6 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!-- Tiêu đề -->
                 <TextBlock x:Name="txtTieuDe"
                            Grid.Row="0"
                            FontWeight="Bold" FontSize="16"
@@ -81,7 +76,6 @@
                            Margin="0,0,0,10"
                            MaxHeight="48"/>
 
-                <!-- Giá & Diện tích -->
                 <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
                     <TextBlock x:Name="txtGia"
                                FontWeight="Bold"
@@ -94,7 +88,6 @@
                                VerticalAlignment="Center"/>
                 </StackPanel>
 
-                <!-- Địa chỉ -->
                 <TextBlock x:Name="txtDiaChi"
                            Grid.Row="2"
                            Foreground="#888888"
@@ -102,7 +95,6 @@
                            FontSize="13.5"
                            Margin="0,0,0,15"/>
 
-                <!-- Nút chức năng -->
                 <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button x:Name="btnYeuThich"
                             Content="❤️"
